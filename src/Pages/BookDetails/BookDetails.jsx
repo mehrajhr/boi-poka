@@ -1,6 +1,7 @@
 import React from "react";
 import { useLoaderData, useParams } from "react-router";
 import { FaStarHalfAlt } from "react-icons/fa";
+import { addToStoreDB } from "../../Utitlity/addToDB";
 
 const BookDetails = () => {
   const { id } = useParams();
@@ -18,6 +19,10 @@ const BookDetails = () => {
     publisher,
     review,
   } = singleData;
+
+  const hadleMarkasRead = id => {
+    addToStoreDB(id);
+  }
 
   return (
     <div>
@@ -50,7 +55,7 @@ const BookDetails = () => {
         </div>
       </div>
       <div className="my-10 flex gap-20">
-        <button className="btn btn-primary">Mark as read</button>
+        <button onClick={() => hadleMarkasRead(bookId)} className="btn btn-primary">Mark as read</button>
         <button className="btn btn-secondary">Add to wishlist</button>
       </div>
     </div>
